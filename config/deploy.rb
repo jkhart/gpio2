@@ -23,14 +23,14 @@ role :db,  "192.168.1.110", :primary => true
 
 namespace :deploy do
   task :start do
-    run "cd #{current_path} && bundle exec rails s -e production -d -P #{shared_path}/pids/server.pid"
+    run "cd #{current_path} && bundle exec rvmsudo rails s -e production -d -P #{shared_path}/pids/server.pid"
   end
   task :stop do
     begin
-      pid_file = "#{shared_path}/pids/server.pid"
+      pid_file = 
       pid = File.read(pid_file).to_i
       Process.kill 9, pid
-      File.delete pid_file
+      run "kill `cat #{shared_path}/pids/server.pid`"
     rescue Exception => exception
       puts exception.message
     end
