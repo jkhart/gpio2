@@ -26,10 +26,14 @@ namespace :deploy do
     run "cd #{current_path} && bundle exec rvmsudo rails s production -d -P #{shared_path}/pids/server.pid"
   end
   task :stop do
-    pid_file = "#{shared_path}/pids/server.pid"
-    pid = File.read(pid_file).to_i
-    Process.kill 9, pid
-    File.delete pid_file
+    begin
+      pid_file = "#{shared_path}/pids/server.pid"
+      pid = File.read(pid_file).to_i
+      Process.kill 9, pid
+      File.delete pid_file
+    rescue Exception => exception
+      logger.warn exception.message
+    end
     #run "ps aux | grep 'rails s' | awk '{ print $2 }'"
   end
   task :restart, :roles => :app, :except => { :no_release => true } do
