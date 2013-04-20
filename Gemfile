@@ -9,28 +9,33 @@ gem 'sqlite3'
 # Frontend
 #gem 'ember-rails'
 gem 'turbolinks'
-gem 'jbuilder', '~> 1.0.1'
+gem 'jbuilder'
 gem 'jquery-rails'
+gem 'twitter-bootstrap-rails'
 
 # GPIO
 group :gpio do
   gem 'pi_piper'
 end
 
-gem "twitter-bootstrap-rails"
+group :production do
+  gem 'execjs'
+  gem 'therubyracer'
+end
+
+group :development do
+  gem 'capistrano'
+  gem 'rvm-capistrano'
+end
 
 # Asset Pipeline
 group :assets do
-  gem 'sass-rails',   '~> 4.0.0.beta1'
-  gem 'coffee-rails', '~> 4.0.0.beta1'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
 end
 
 # Tests
 group :test do
   gem 'rspec'
-end
-
-group :development do
-  gem 'capistrano'
 end

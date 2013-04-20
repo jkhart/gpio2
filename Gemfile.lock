@@ -55,6 +55,7 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.7.7)
+    libv8 (3.11.8.17)
     mail (2.5.3)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -92,6 +93,7 @@ GEM
     rake (10.0.4)
     rdoc (3.12.2)
       json (~> 1.4)
+    ref (1.0.4)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -100,6 +102,8 @@ GEM
     rspec-expectations (2.13.0)
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-mocks (2.13.1)
+    rvm-capistrano (1.3.0)
+      capistrano (>= 2.0.0)
     sass (3.2.7)
     sass-rails (4.0.0.rc1)
       railties (>= 4.0.0.beta, < 5.0)
@@ -116,6 +120,9 @@ GEM
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     sqlite3 (1.3.7)
+    therubyracer (0.11.4)
+      libv8 (~> 3.11.8.12)
+      ref
     thor (0.18.1)
     thread_safe (0.1.0)
       atomic
@@ -139,14 +146,17 @@ PLATFORMS
 
 DEPENDENCIES
   capistrano
-  coffee-rails (~> 4.0.0.beta1)
-  jbuilder (~> 1.0.1)
+  coffee-rails
+  execjs
+  jbuilder
   jquery-rails
   pi_piper
   rails (= 4.0.0.beta1)
   rspec
-  sass-rails (~> 4.0.0.beta1)
+  rvm-capistrano
+  sass-rails
   sqlite3
+  therubyracer
   turbolinks
   twitter-bootstrap-rails
-  uglifier (>= 1.0.3)
+  uglifier

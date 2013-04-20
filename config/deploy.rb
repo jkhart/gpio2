@@ -1,25 +1,38 @@
-set :application, "GPIO2"
-set :repository,  "set your repository location here"
+require 'rvm/capistrano'
+require 'bundler/capistrano'
 
-# set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+set :application, "gpio2"
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+set :repository,  "git@github.com:jkhart/gpio2.git"
+set :scm, :git
 
-# if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
+set :deploy_to, "/home/pi/applications/#{application}"
+set :deploy_via, :remote_cache
+set :user, "pi"
+set :use_sudo, false
+set :normalize_asset_timestamps, false
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+set :rvm_ruby_string, "1.9.3-p392"
+set :rvm_bin_path, "/home/#{user}/.rvm/bin/"
 
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+role :web, "192.168.1.110"
+role :app, "192.168.1.110"
+role :db,  "192.168.1.110", :primary => true
+
+namespace :deploy do
+  task :start do
+    run "cd #{current_path} && bundle exec rails s production -d -P #{shared_path}/pids/server.pid"
+  end
+  task :stop do
+    pid_file = "#{shared_path}/pids/server.pid"
+    pid = File.read(pid_file).to_i
+    Process.kill 9, pid
+    File.delete pid_file
+    #run "ps aux | grep 'rails s' | awk '{ print $2 }'"
+  end
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    stop
+    start
+  end
+end
+after "deploy:restart", "deploy:cleanup"
