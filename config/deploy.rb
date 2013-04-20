@@ -23,7 +23,7 @@ role :db,  "192.168.1.110", :primary => true
 
 namespace :deploy do
   task :start do
-    run "cd #{current_path} && bundle exec rvmsudo rails s production -d -P #{shared_path}/pids/server.pid"
+    run "cd #{current_path} && bundle exec rails s production -d -P #{shared_path}/pids/server.pid"
   end
   task :stop do
     begin
@@ -32,7 +32,7 @@ namespace :deploy do
       Process.kill 9, pid
       File.delete pid_file
     rescue Exception => exception
-      logger.warn exception.message
+      puts exception.message
     end
     #run "ps aux | grep 'rails s' | awk '{ print $2 }'"
   end
