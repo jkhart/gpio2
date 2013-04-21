@@ -27,10 +27,7 @@ namespace :deploy do
   end
   task :stop do
     begin
-      pid_file = 
-      pid = File.read(pid_file).to_i
-      Process.kill 9, pid
-      run "kill `cat #{shared_path}/pids/server.pid`"
+      run "export rvmsudo_secure_path=1; rvmsudo kill -9 `cat #{shared_path}/pids/server.pid`"
     rescue Exception => exception
       puts exception.message
     end

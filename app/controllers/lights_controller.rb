@@ -1,7 +1,7 @@
 class LightsController < ApplicationController
 
   def show
-    
+    pin = PiPiper::Pin.new(pin: 17, direction: :out)
   end
 
   def switch
