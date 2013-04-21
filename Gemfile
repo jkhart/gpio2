@@ -13,6 +13,10 @@ gem 'jbuilder'
 gem 'jquery-rails'
 gem 'twitter-bootstrap-rails'
 
+
+# Sound
+gem 'audite'
+
 # GPIO
 group :gpio do
   gem 'pi_piper'
