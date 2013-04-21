@@ -23,7 +23,7 @@ role :db,  "192.168.1.110", :primary => true
 
 namespace :deploy do
   task :start do
-    run "cd #{current_path} && bundle exec rvmsudo rails s -e production -d -P #{shared_path}/pids/server.pid"
+    run "export rvmsudo_secure_path=1; cd #{current_path} && bundle exec rvmsudo rails s -e production -d -P #{shared_path}/pids/server.pid"
   end
   task :stop do
     begin
