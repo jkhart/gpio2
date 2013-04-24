@@ -16,7 +16,7 @@ gem 'twitter-bootstrap-rails'
 
 # Sound
 gem 'ruby-audio'
-gem 'audite'
+gem 'audite', git: "git@github.com:jkhart/audite.git"
 
 # GPIO
 group :gpio do

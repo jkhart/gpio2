@@ -1,3 +1,9 @@
+GIT
+  remote: git@github.com:jkhart/audite.git
+  revision: ff1f5ab60db7183c4f5a7ba1dd376fb8002b1a3a
+  specs:
+    audite (0.3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -27,7 +33,6 @@ GEM
       tzinfo (~> 0.3.33)
     arel (4.0.0)
     atomic (1.1.8)
-    audite (0.3.0)
     builder (3.1.4)
     capistrano (2.14.2)
       highline
@@ -142,7 +147,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  audite
+  audite!
   capistrano
   coffee-rails
   execjs
