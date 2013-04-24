@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:jkhart/audite.git
-  revision: 2f3a89798ebcf15a7ab224468bd6bed6f7cbdbbc
+  revision: c7606fd63a4bf30280d14d412edf407eb6ff4aa0
   specs:
     audite (0.3.0)
 
